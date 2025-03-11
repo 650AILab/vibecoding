@@ -1,2 +1,2 @@
-# vibecoding
-Vibe coding
+# Vibe Coding Projects
+
