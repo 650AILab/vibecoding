@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apple Inc. (AAPL) Analysis Dashboard</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        
+        .header p {
+            margin: 5px 0 0;
+        }
+        
+        .stock-info {
+            display: flex;
+            align-items: center;
+            margin-top: 15px;
+        }
+        
+        .stock-price {
+            font-size: 32px;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+        
+        .stock-change {
+            font-size: 18px;
+            padding: 5px 10px;
+            border-radius: 4px;
+            background-color: #27ae60;
+            color: white;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+        }
+        
+        .section-title {
+            background-color: #34495e;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .chart-container {
+            width: 100%;
+            height: 300px;
+            position: relative;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        
+        .full-width {
+            grid-column: 1 / -1;
+        }
+        
+        .swot-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        
+        .swot-card {
+            background-color: white;
+            border-radius: 5px;
+            padding: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .swot-header {
+            font-weight: bold;
+            margin-bottom: 10px;
+            padding: 5px;
+            border-radius: 3px;
+            color: white;
+        }
+        
+        .strengths .swot-header {
+            background-color: #27ae60;
+        }
+        
+        .weaknesses .swot-header {
+            background-color: #e74c3c;
+        }
+        
+        .opportunities .swot-header {
+            background-color: #3498db;
+        }
+        
+        .threats .swot-header {
+            background-color: #f39c12;
+        }
+        
+        .swot-list {
+            list-style-type: disc;
+            margin-left: 20px;
+            padding-left: 0;
+        }
+        
+        .swot-list li {
+            margin-bottom: 5px;
+        }
+        
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+        
+        .metric-card {
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            padding: 10px;
+            text-align: center;
+        }
+        
+        .metric-value {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 5px 0;
+        }
+        
+        .metric-label {
+            font-size: 12px;
+            color: #7f8c8d;
+        }
+        
+        .scenario-card {
+            background-color: white;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .scenario-badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 3px;
+            color: white;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        
+        .bull {
+            background-color: #27ae60;
+        }
+        
+        .base {
+            background-color: #3498db;
+        }
+        
+        .bear {
+            background-color: #e74c3c;
+        }
+        
+        .price-up {
+            color: #27ae60;
+        }
+        
+        .price-down {
+            color: #e74c3c;
+        }
+        
+        @media (max-width: 768px) {
+            .grid, .swot-grid, .metric-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>Apple Inc. (AAPL) Analysis Dashboard</h1>
+            <p>Last Updated: March 20, 2025</p>
+            <div class="stock-info">
+                <div class="stock-price">$215.24</div>
+                <div class="stock-change">2.55 (1.20%)</div>
+            </div>
+        </div>
+        
+        <!-- Stock Performance Section -->
+        <div class="section">
+            <div class="section-title">
+                <h2>Stock Performance</h2>
+            </div>
+            
+            <div class="card">
+                <h3>2-Year Stock Performance</h3>
+                <div class="chart-container">
+                    <canvas id="stockChart"></canvas>
+                </div>
+            </div>
+            
+            <div class="grid">
+                <div class="card">
+                    <h3>Key Performance Metrics</h3>
+                    <div class="metric-grid">
+                        <div class="metric-card">
+                            <div class="metric-label">YTD Change</div>
+                            <div class="metric-value price-down">-11.6%</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-label">From 52-Week High</div>
+                            <div class="metric-value price-down">-17.2%</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-label">52-Week Change</div>
+                            <div class="metric-value price-up">24.5%</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-label">5-Year Return</div>
+                            <div class="metric-value price-up">295.3</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-label">52-Week High</div>
+                            <div class="metric-value">$259.81</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-label">High Date</div>
+                            <div class="metric-value">Mar 21, 2023</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3>Recent Key Events</h3>
+                    <ul>
+                        
+                        <li><strong>March 2025:</strong> Quarterly Earnings Report - Reported quarterly financial results</li>
+                        
+                        <li><strong>January 2025:</strong> Product Launch - Announced new product lineup</li>
+                        
+                        <li><strong>November 2024:</strong> Strategic Partnership - Formed partnership with major industry player</li>
+                        
+                        <li><strong>October 2024:</strong> Expansion Announcement - Announced plans to expand manufacturing capacity</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Market Share Section -->
+        <div class="section">
+            <div class="section-title">
+                <h2>Market Position</h2>
+            </div>
+            
+            <div class="card">
+                <h3>Market Share Trends (2023-2025)</h3>
+                <div class="chart-container">
+                    <canvas id="marketShareChart"></canvas>
+                </div>
+            </div>
+            
+            <div class="grid">
+                <div class="card">
+                    <h3>Regional Market Share (2025)</h3>
+                    <div class="chart-container">
+                        <canvas id="regionalShareChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3>Apple Inc. Position</h3>
+                    <p><strong>Sector:</strong> Technology</p>
+                    <p><strong>Industry:</strong> Consumer Electronics</p>
+                    <p>Apple Inc. holds a significant position in the Consumer Electronics market, with particular strength in key regions. The company continues to focus on innovation and market expansion to maintain its competitive edge.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- SWOT Analysis Section -->
+        <div class="section">
+            <div class="section-title">
+                <h2>SWOT Analysis</h2>
+            </div>
+            
+            <div class="swot-grid">
+                <div class="swot-card strengths">
+                    <div class="swot-header">Strengths</div>
+                    <ul class="swot-list">
+                        
+                        <li>Strong presence in Technology sector</li>
+                        
+                        <li>Innovative product pipeline</li>
+                        
+                        <li>Brand recognition</li>
+                        
+                        <li>Experienced management team</li>
+                        
+                        <li>Strong financial position</li>
+                        
+                        <li>Competitive advantage in technology</li>
+                        
+                    </ul>
+                </div>
+                
+                <div class="swot-card weaknesses">
+                    <div class="swot-header">Weaknesses</div>
+                    <ul class="swot-list">
+                        
+                        <li>Dependency on key markets</li>
+                        
+                        <li>Supply chain complexities</li>
+                        
+                        <li>Production scalability challenges</li>
+                        
+                        <li>High R&D costs</li>
+                        
+                        <li>Potential quality control issues</li>
+                        
+                        <li>Regulatory compliance costs</li>
+                        
+                    </ul>
+                </div>
+                
+                <div class="swot-card opportunities">
+                    <div class="swot-header">Opportunities</div>
+                    <ul class="swot-list">
+                        
+                        <li>New market expansion</li>
+                        
+                        <li>Strategic acquisitions</li>
+                        
+                        <li>Technology innovation</li>
+                        
+                        <li>Growing market demand</li>
+                        
+                        <li>Diversification opportunities</li>
+                        
+                        <li>Industry partnerships</li>
+                        
+                    </ul>
+                </div>
+                
+                <div class="swot-card threats">
+                    <div class="swot-header">Threats</div>
+                    <ul class="swot-list">
+                        
+                        <li>Increasing competition</li>
+                        
+                        <li>Regulatory challenges</li>
+                        
+                        <li>Economic uncertainty</li>
+                        
+                        <li>Disruption in supply chain</li>
+                        
+                        <li>Rising costs of raw materials</li>
+                        
+                        <li>Rapid technology changes</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Future Forecasts Section -->
+        <div class="section">
+            <div class="section-title">
+                <h2>Future Price Forecasts (2025-2026)</h2>
+            </div>
+            
+            <div class="card">
+                <h3>Price Forecast Scenarios</h3>
+                <div class="chart-container">
+                    <canvas id="forecastChart"></canvas>
+                </div>
+            </div>
+            
+            <div class="scenario-card">
+                <div>
+                    <span class="scenario-badge bull">BULL CASE</span>
+                    <strong>EOY 2026 Price Target: $['258.29', '301.34', '344.38', '365.91', '387.43', '408.96', '430.48', '452.00']</strong>
+                </div>
+                <p>Assumes:</p>
+                <ul>
+                    
+                    <li>Strong market growth and demand</li>
+                    
+                    <li>Successful product innovations</li>
+                    
+                    <li>Expansion into new markets</li>
+                    
+                    <li>Operational efficiency improvements</li>
+                    
+                    <li>Favorable regulatory environment</li>
+                    
+                    <li>Successful strategic partnerships</li>
+                    
+                </ul>
+            </div>
+            
+            <div class="scenario-card">
+                <div>
+                    <span class="scenario-badge base">BASE CASE</span>
+                    <strong>EOY 2026 Price Target: $['236.76', '258.29', '279.81', '290.57', '301.34', '312.10', '322.86', '333.62']</strong>
+                </div>
+                <p>Assumes:</p>
+                <ul>
+                    
+                    <li>Moderate market growth</li>
+                    
+                    <li>Steady product development</li>
+                    
+                    <li>Maintaining current market position</li>
+                    
+                    <li>Stable operational metrics</li>
+                    
+                    <li>Managing competitive pressures</li>
+                    
+                    <li>Continued investment in core business</li>
+                    
+                </ul>
+            </div>
+            
+            <div class="scenario-card">
+                <div>
+                    <span class="scenario-badge bear">BEAR CASE</span>
+                    <strong>EOY 2026 Price Target: $['193.72', '182.95', '176.50', '172.19', '167.89', '163.58', '165.73', '172.19']</strong>
+                </div>
+                <p>Assumes:</p>
+                <ul>
+                    
+                    <li>Market slowdown or contraction</li>
+                    
+                    <li>Product delays or issues</li>
+                    
+                    <li>Increasing competitive pressure</li>
+                    
+                    <li>Margin compression</li>
+                    
+                    <li>Regulatory headwinds</li>
+                    
+                    <li>Supply chain disruptions</li>
+                    
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Analyst Consensus -->
+        <div class="section">
+            <div class="section-title">
+                <h2>Analyst Consensus</h2>
+            </div>
+            
+            <div class="card">
+                <h3>Analyst Recommendations (March 20, 2025)</h3>
+                <div class="chart-container">
+                    <canvas id="analystsChart"></canvas>
+                </div>
+                <div style="margin-top: 15px;">
+                    <p>The analyst consensus reflects a mixed outlook for Apple Inc., with a slight bias toward positive recommendations. Individual price targets vary widely, indicating uncertainty about the company's near-term prospects.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Stock performance chart
+        const stockCtx = document.getElementById('stockChart').getContext('2d');
+        const stockChart = new Chart(stockCtx, {
+            type: 'line',
+            data: {
+                labels: ["Mar 23", "Apr 23", "May 23", "Jun 23", "Jul 23", "Aug 23", "Sep 23", "Oct 23", "Nov 23", "Dec 23", "Jan 24", "Feb 24", "Mar 24", "Apr 24", "May 24", "Jun 24", "Jul 24", "Aug 24", "Sep 24", "Oct 24", "Nov 24", "Dec 24", "Jan 25", "Feb 25", "Mar 25"],
+                datasets: [{
+                    label: 'AAPL Stock Price (USD)',
+                    data: [[163.25363159179688], [167.9858856201172], [175.72305297851562], [192.29901123046875], [194.75765991210938], [186.5030517578125], [169.96429443359375], [169.52749633789062], [188.8163604736328], [191.38096618652344], [183.29946899414062], [179.90054321289062], [170.67410278320312], [169.52951049804688], [191.6060333251953], [209.91448974609375], [221.3361053466797], [228.49710083007812], [232.48831176757812], [225.4138946533203], [237.06935119628906], [250.1449737548828], [235.74081420898438], [241.83999633789062], [215.24000549316406]],
+                    borderColor: '#e74c3c',
+                    backgroundColor: 'rgba(231, 76, 60, 0.1)',
+                    borderWidth: 2,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                interaction: {
+                    mode: 'index',
+                    intersect: false
+                },
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        ticks: {
+                            callback: function(value) {
+                                return '$' + value;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+        
+        // Market share chart
+        const marketShareCtx = document.getElementById('marketShareChart').getContext('2d');
+        const marketShareChart = new Chart(marketShareCtx, {
+            type: 'line',
+            data: {
+                labels: ["Q1 23", "Q2 23", "Q3 23", "Q4 23", "Q1 24", "Q2 24", "Q3 24", "Q1 25"],
+                datasets: [{
+                    label: 'Apple Inc.',
+                    data: [15, 14, 13, 12, 11, 10, 9, 8],
+                    borderColor: '#e74c3c',
+                    backgroundColor: 'transparent',
+                    borderWidth: 3
+                }, {
+                    label: 'Competitor 1',
+                    data: [10, 11, 12, 13, 14, 15, 16, 17],
+                    borderColor: '#2ecc71',
+                    backgroundColor: 'transparent',
+                    borderWidth: 3
+                }, {
+                    label: 'Competitor 2',
+                    data: [8, 8, 8, 7, 7, 7, 6, 6],
+                    borderColor: '#3498db',
+                    backgroundColor: 'transparent',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                interaction: {
+                    mode: 'index',
+                    intersect: false
+                },
+                scales: {
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Market Share (%)'
+                        }
+                    }
+                }
+            }
+        });
+        
+        // Regional market share chart
+        const regionalShareCtx = document.getElementById('regionalShareChart').getContext('2d');
+        const regionalShareChart = new Chart(regionalShareCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ["North America", "Europe", "Asia", "Rest of World"],
+                datasets: [{
+                    data: [3.2, 2.5, 2.0, 1.3],
+                    backgroundColor: ['#3498db', '#2ecc71', '#e74c3c', '#f39c12']
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'right'
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.label + ': ' + context.raw + '% market share';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+        
+        // Forecast chart
+        const forecastCtx = document.getElementById('forecastChart').getContext('2d');
+        const forecastChart = new Chart(forecastCtx, {
+            type: 'line',
+            data: {
+                labels: ["Apr 25", "Jul 25", "Oct 25", "Jan 26", "Apr 26", "Jul 26", "Oct 26", "Dec 26"],
+                datasets: [{
+                    label: 'Bull Case',
+                    data: ["258.29", "301.34", "344.38", "365.91", "387.43", "408.96", "430.48", "452.00"],
+                    borderColor: '#27ae60',
+                    backgroundColor: 'transparent',
+                    borderWidth: 3
+                }, {
+                    label: 'Base Case',
+                    data: ["236.76", "258.29", "279.81", "290.57", "301.34", "312.10", "322.86", "333.62"],
+                    borderColor: '#3498db',
+                    backgroundColor: 'transparent',
+                    borderWidth: 3
+                }, {
+                    label: 'Bear Case',
+                    data: ["193.72", "182.95", "176.50", "172.19", "167.89", "163.58", "165.73", "172.19"],
+                    borderColor: '#e74c3c',
+                    backgroundColor: 'transparent',
+                    borderWidth: 3
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                interaction: {
+                    mode: 'index',
+                    intersect: false
+                },
+                scales: {
+                    y: {
+                        ticks: {
+                            callback: function(value) {
+                                return '$' + value.toFixed(2);
+                            }
+                        }
+                    }
+                }
+            }
+        });
+        
+        // Analysts chart
+        const analystsCtx = document.getElementById('analystsChart').getContext('2d');
+        const analystsChart = new Chart(analystsCtx, {
+            type: 'bar',
+            data: {
+                labels: ["Strong Buy", "Buy", "Hold", "Sell", "Strong Sell"],
+                datasets: [{
+                    data: [10, 15, 18, 7, 3],
+                    backgroundColor: ['#27ae60', '#2ecc71', '#3498db', '#e74c3c', '#c0392b']
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.raw + ' analysts';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Number of Analysts'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

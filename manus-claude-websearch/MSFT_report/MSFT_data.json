@@ -1,0 +1,317 @@
+{
+    "ticker": "MSFT",
+    "company_name": "Microsoft Corporation",
+    "current_date": "March 20, 2025",
+    "current_price": "387.82",
+    "price_change": "4.30",
+    "price_change_percent": "1.12",
+    "ytd_change": "-7.2",
+    "high_52_week": "465.64",
+    "high_52_week_date": "Mar 21, 2023",
+    "change_from_high": "-16.7",
+    "week_52_change": "-6.4",
+    "five_year_change": "198.0",
+    "sector": "Technology",
+    "industry": "Software - Infrastructure",
+    "chart_dates": [
+        "Mar 23",
+        "Apr 23",
+        "May 23",
+        "Jun 23",
+        "Jul 23",
+        "Aug 23",
+        "Sep 23",
+        "Oct 23",
+        "Nov 23",
+        "Dec 23",
+        "Jan 24",
+        "Feb 24",
+        "Mar 24",
+        "Apr 24",
+        "May 24",
+        "Jun 24",
+        "Jul 24",
+        "Aug 24",
+        "Sep 24",
+        "Oct 24",
+        "Nov 24",
+        "Dec 24",
+        "Jan 25",
+        "Feb 25",
+        "Mar 25"
+    ],
+    "chart_prices": [
+        [
+            283.7864685058594
+        ],
+        [
+            302.44964599609375
+        ],
+        [
+            323.95550537109375
+        ],
+        [
+            335.94140625
+        ],
+        [
+            331.38385009765625
+        ],
+        [
+            324.01861572265625
+        ],
+        [
+            312.1456604003906
+        ],
+        [
+            334.2503967285156
+        ],
+        [
+            375.344970703125
+        ],
+        [
+            372.501953125
+        ],
+        [
+            393.83929443359375
+        ],
+        [
+            410.5059509277344
+        ],
+        [
+            417.53228759765625
+        ],
+        [
+            386.380126953125
+        ],
+        [
+            412.7277526855469
+        ],
+        [
+            444.3636169433594
+        ],
+        [
+            415.92913818359375
+        ],
+        [
+            415.4736328125
+        ],
+        [
+            428.5810241699219
+        ],
+        [
+            404.72674560546875
+        ],
+        [
+            422.61260986328125
+        ],
+        [
+            420.6565246582031
+        ],
+        [
+            414.22943115234375
+        ],
+        [
+            396.989990234375
+        ],
+        [
+            387.82000732421875
+        ]
+    ],
+    "market_share_dates": [
+        "Q1 23",
+        "Q2 23",
+        "Q3 23",
+        "Q4 23",
+        "Q1 24",
+        "Q2 24",
+        "Q3 24",
+        "Q1 25"
+    ],
+    "market_share_company": [
+        15,
+        14,
+        13,
+        12,
+        11,
+        10,
+        9,
+        8
+    ],
+    "market_share_competitor1": [
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+    ],
+    "market_share_competitor2": [
+        8,
+        8,
+        8,
+        7,
+        7,
+        7,
+        6,
+        6
+    ],
+    "regional_share": [
+        3.2,
+        2.5,
+        2.0,
+        1.3
+    ],
+    "regional_labels": [
+        "North America",
+        "Europe",
+        "Asia",
+        "Rest of World"
+    ],
+    "forecast_dates": [
+        "Apr 25",
+        "Jul 25",
+        "Oct 25",
+        "Jan 26",
+        "Apr 26",
+        "Jul 26",
+        "Oct 26",
+        "Dec 26"
+    ],
+    "bull_case": [
+        "465.38",
+        "542.95",
+        "620.51",
+        "659.29",
+        "698.08",
+        "736.86",
+        "775.64",
+        "814.42"
+    ],
+    "base_case": [
+        "426.60",
+        "465.38",
+        "504.17",
+        "523.56",
+        "542.95",
+        "562.34",
+        "581.73",
+        "601.12"
+    ],
+    "bear_case": [
+        "349.04",
+        "329.65",
+        "318.01",
+        "310.26",
+        "302.50",
+        "294.74",
+        "298.62",
+        "310.26"
+    ],
+    "analyst_labels": [
+        "Strong Buy",
+        "Buy",
+        "Hold",
+        "Sell",
+        "Strong Sell"
+    ],
+    "analyst_counts": [
+        10,
+        15,
+        18,
+        7,
+        3
+    ],
+    "swot": {
+        "strengths": [
+            "Strong presence in Technology sector",
+            "Innovative product pipeline",
+            "Brand recognition",
+            "Experienced management team",
+            "Strong financial position",
+            "Competitive advantage in technology"
+        ],
+        "weaknesses": [
+            "Dependency on key markets",
+            "Supply chain complexities",
+            "Production scalability challenges",
+            "High R&D costs",
+            "Potential quality control issues",
+            "Regulatory compliance costs"
+        ],
+        "opportunities": [
+            "New market expansion",
+            "Strategic acquisitions",
+            "Technology innovation",
+            "Growing market demand",
+            "Diversification opportunities",
+            "Industry partnerships"
+        ],
+        "threats": [
+            "Increasing competition",
+            "Regulatory challenges",
+            "Economic uncertainty",
+            "Disruption in supply chain",
+            "Rising costs of raw materials",
+            "Rapid technology changes"
+        ]
+    },
+    "key_events": [
+        {
+            "date": "March 2025",
+            "title": "Quarterly Earnings Report",
+            "description": "Reported quarterly financial results"
+        },
+        {
+            "date": "January 2025",
+            "title": "Product Launch",
+            "description": "Announced new product lineup"
+        },
+        {
+            "date": "November 2024",
+            "title": "Strategic Partnership",
+            "description": "Formed partnership with major industry player"
+        },
+        {
+            "date": "October 2024",
+            "title": "Expansion Announcement",
+            "description": "Announced plans to expand manufacturing capacity"
+        }
+    ],
+    "scenarios": {
+        "bull": {
+            "price_target": "$['465.38', '542.95', '620.51', '659.29', '698.08', '736.86', '775.64', '814.42']",
+            "assumptions": [
+                "Strong market growth and demand",
+                "Successful product innovations",
+                "Expansion into new markets",
+                "Operational efficiency improvements",
+                "Favorable regulatory environment",
+                "Successful strategic partnerships"
+            ]
+        },
+        "base": {
+            "price_target": "$['426.60', '465.38', '504.17', '523.56', '542.95', '562.34', '581.73', '601.12']",
+            "assumptions": [
+                "Moderate market growth",
+                "Steady product development",
+                "Maintaining current market position",
+                "Stable operational metrics",
+                "Managing competitive pressures",
+                "Continued investment in core business"
+            ]
+        },
+        "bear": {
+            "price_target": "$['349.04', '329.65', '318.01', '310.26', '302.50', '294.74', '298.62', '310.26']",
+            "assumptions": [
+                "Market slowdown or contraction",
+                "Product delays or issues",
+                "Increasing competitive pressure",
+                "Margin compression",
+                "Regulatory headwinds",
+                "Supply chain disruptions"
+            ]
+        }
+    }
+}
